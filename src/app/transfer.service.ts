@@ -8,11 +8,11 @@ export class TransferService {
   constructor() { }
 
 
-  safe60Money: number;
-  safe40Money: number;
+  safeMoreMoney: number;
+  safeLessMoney: number;
   youMoney: number;
-  risk70Money: number;
-  risk30Money: number;
+  riskMoreMoney: number;
+  riskLessMoney: number;
 
 
   setData(age: number, inc: number) {
@@ -25,31 +25,28 @@ export class TransferService {
       // Fund Logic
 
       //Safe Fund
-      var agePercent: number = age * 0.01;
-      var safeMoney: number = inc * agePercent;
-      var safe60Money: number = safeMoney * 0.6;
-      var safe40Money: number = safeMoney - safe60Money;
-      this.safe60Money = safe60Money;
-      this.safe40Money = safe40Money;
-
-      //You Fund
       var x: number = Math.trunc((age / 10)); //Removing decimal points with Math.trunc()
       var y: number = x * 10;
       var z: number = y + 10; //Next Rounded Number
-      
 
-      var yearsBetween: number = z - age;
-      var yearsBetweenPercent: number = yearsBetween * 0.01;
-      var youMoney: number = inc * yearsBetweenPercent;
+      var roundPercent: number = z * 0.01;
+      var safeMoney: number = inc * roundPercent;
+      var safeMoreMoney: number = safeMoney * 0.7;
+      var safeLessMoney: number = safeMoney - safeMoreMoney;
+      this.safeMoreMoney = safeMoreMoney;
+      this.safeLessMoney = safeLessMoney;
+
+      //You Fund
+      var youMoney: number = inc * 0.05;
       var youHalfMoney: number = youMoney / 2;
       this.youMoney = youHalfMoney; 
 
-      //Risky Fund
+      //Risk Fund
       var riskMoney: number = inc - (safeMoney + youMoney);
-      var risk70Money: number = riskMoney * 0.7;
-      var risk30Money: number = riskMoney - risk70Money;
-      this.risk70Money = risk70Money;
-      this.risk30Money = risk30Money;
+      var riskMoreMoney: number = riskMoney * 0.7;
+      var riskLessMoney: number = riskMoney - riskMoreMoney;
+      this.riskMoreMoney = riskMoreMoney;
+      this.riskLessMoney = riskLessMoney;
     }
 
 
@@ -59,11 +56,11 @@ export class TransferService {
   //Returning the values
 
   getsafe60(){
-    return this.safe60Money;
+    return this.safeMoreMoney;
   }
 
   getsafe40(){
-    return this.safe40Money;
+    return this.safeLessMoney;
   }
   
   getYouMoney(){
@@ -72,12 +69,12 @@ export class TransferService {
 
 
   getrisk70(){
-   return this.risk70Money; 
+   return this.riskMoreMoney; 
   }
 
 
   getrisk30(){
-    return this.risk30Money;
+    return this.riskLessMoney;
   }
 
 }

@@ -1,45 +1,63 @@
-<div class="container-fluid" style="padding-top: 100px; text-align: center;">
+<div class="container-fluid" style="padding-top: 80px; text-align: center;">
   <h1>Monthly <strong>Money</strong> Allocator</h1>
   <small>Use this every month for better allocation of your money</small>
 </div>
 
-
 <div class="container-fluid" style="padding-top: 50px; text-align: center;">
+
   <div class="row">
     <div class="col-sm-3"></div>
-    <div class="col-sm-3" style="align-items: center">
-      <div class="input-group input-group-lg">
-        <input type="text" #age placeholder="Your age?" class="form-control" aria-label="Sizing example input"
-          aria-describedby="inputGroup-sizing-lg">
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="input-group input-group-lg">
-        <input type="text" #inc placeholder="This month's 'net income'?" class="form-control"
-          aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-      </div>
+    <div class="col-sm-6">
+      <form [formGroup]="myform" novalidate>
+        <div class="row" style="align-content: center">
+          <div class="col">
+            <input type="text" class="form-control" #age placeholder="Your Age?" formControlName="age">
+          </div>
+          <div class="col">
+            <input type="text" class="form-control" #inc placeholder="Net Income?"
+              formControlName="income">
+          </div>
+        </div>
+        <div class="col" style="align-items: center; padding-top: 25px;">
+
+          <button type="button" class="btn btn-primary btn-lg" (click)="moneyAlloc(age.value, inc.value)"
+            routerLink="last" [disabled]="!this.myform.valid">Submit</button></div>
+      </form>
     </div>
     <div class="col-sm-3"></div>
   </div>
 </div>
 
-<div class="container-fluid" style="padding-top: 25px; text-align: center;">
-  <button type="button" class="btn btn-primary btn-lg" (click)="moneyAlloc(age.value, inc.value)"
-    routerLink="last">Submit</button>
-</div>
+
+<div class="container-fluid" style="padding-top: 60px; text-align: center;">
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Net Income </strong>= Total income - Total expense.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+      <div class="col-sm-4"></div>
+    </div>
+  </div>
 
 
-<div class="container-fluid" style="padding-top: 50px; text-align: center;">
+
+
+<div class="container-fluid" style="padding-top: 40px; text-align: center;">
   <div class="row">
     <div class="col-sm-4"></div>
     <div class="col-sm-4">
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>Personal Project!</strong> Don't take it as an investment advice. 
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-</div>
-<div class="col-sm-4"></div>
-</div>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Personal Project!</strong> Don't take it as an investment advice.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+    <div class="col-sm-4"></div>
+  </div>
 </div>
